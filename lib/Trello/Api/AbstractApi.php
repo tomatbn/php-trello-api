@@ -212,9 +212,16 @@ abstract class AbstractApi implements ApiInterface
             }
         }
 
+        $body = $this->createParametersBody($parameters);
+
+        if (isset($requestHeaders['Content-Type'])) {
+            if ($requestHeaders['Content-Type'] === 'application/json')
+                $body = json_encode($parameters);
+        }
+
         $response = $this->client->getHttpClient()->put(
             $path,
-            $this->createParametersBody($parameters),
+            $body,
             $requestHeaders
         );
 
