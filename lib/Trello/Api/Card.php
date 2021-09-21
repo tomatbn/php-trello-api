@@ -106,6 +106,11 @@ class Card extends AbstractApi
         return $this->put($this->getPath() . '/' . rawurlencode($id), $params);
     }
 
+    public function updateCustomField($id, $custom_field_id, array $params = [], array $headers = [])
+    {
+        return $this->put($this->getPath() . '/' . rawurlencode($id) . '/customField/' . rawurlencode($custom_field_id) . '/item', $params, $headers);
+    }
+
     /**
      * Set a given card's board
      * @link https://trello.com/docs/api/card/#put-1-cards-card-id-or-shortlink-idboard
